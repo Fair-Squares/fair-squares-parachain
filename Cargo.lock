@@ -1996,6 +1996,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "83c8d82922337cd23a15f88b70d8e4ef5f11da38dd7cdb55e84dd5de99695da0"
 dependencies = [
  "enumflags2_derive",
+ "serde",
 ]
 
 [[package]]
@@ -4760,6 +4761,52 @@ dependencies = [
 ]
 
 [[package]]
+name = "orml-nft"
+version = "0.4.1-dev"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=ec9a8d8521ca9b7b800dd36726bba7da7a169b9d#ec9a8d8521ca9b7b800dd36726bba7da7a169b9d"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "orml-traits"
+version = "0.4.1-dev"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=ec9a8d8521ca9b7b800dd36726bba7da7a169b9d#ec9a8d8521ca9b7b800dd36726bba7da7a169b9d"
+dependencies = [
+ "frame-support",
+ "impl-trait-for-tuples",
+ "num-traits",
+ "orml-utilities",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+ "xcm",
+]
+
+[[package]]
+name = "orml-utilities"
+version = "0.4.1-dev"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=ec9a8d8521ca9b7b800dd36726bba7da7a169b9d#ec9a8d8521ca9b7b800dd36726bba7da7a169b9d"
+dependencies = [
+ "frame-support",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "owning_ref"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5257,6 +5304,27 @@ dependencies = [
  "frame-system",
  "parity-scale-codec",
  "scale-info",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-nft"
+version = "0.0.1"
+dependencies = [
+ "enumflags2",
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "orml-nft",
+ "orml-traits",
+ "pallet-balances",
+ "pallet-utility",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-core",
  "sp-io",
  "sp-runtime",
  "sp-std",
@@ -5768,6 +5836,7 @@ dependencies = [
  "pallet-authorship",
  "pallet-balances",
  "pallet-collator-selection",
+ "pallet-nft",
  "pallet-session",
  "pallet-sudo",
  "pallet-template",
