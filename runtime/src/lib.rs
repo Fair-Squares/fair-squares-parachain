@@ -45,6 +45,7 @@ pub use sp_runtime::BuildStorage;
 use pallet_xcm::XcmPassthrough;
 use polkadot_parachain::primitives::Sibling;
 use polkadot_runtime_common::{BlockHashCount, RocksDbWeight, SlowAdjustingFeeUpdate};
+use pallet_nft::{TokenData, BlockNumberOf, ClassIdOf, ClassData, CREATION_FEE};
 
 // XCM Imports
 use xcm::latest::prelude::*;
@@ -56,7 +57,6 @@ use xcm_builder::{
 	UsingComponents,
 };
 use xcm_executor::{Config, XcmExecutor};
-use scale_info::prelude::vec;
 
 /// Import the template pallet.
 pub use pallet_template;
@@ -591,15 +591,15 @@ impl pallet_collator_selection::Config for Runtime {
 	type WeightInfo = ();
 }
 
-/// Configure the pallet template in pallets/template.
+// Configure the pallet template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
-/// Configure nft pallet in pallets/nft
+// Configure nft pallet in pallets/nft
 parameter_types! {
 	pub const ClassCreationFee: u32 = CREATION_FEE;
-	pub const Pot: AccountId32 = AccountId32::new([9u8; 32]);
+	pub const Pot: AccountId = AccountId::new([9u8; 32]);
 }
 
 impl pallet_nft::Config for Runtime {
@@ -610,20 +610,20 @@ impl pallet_nft::Config for Runtime {
 	type Pot = Pot;
 }
 
-// parameter_types! {
-// 	pub const MaxClassMetadata: u32 = 1024;
-// 	pub const MaxTokenMetadata: u32 = 1024;
-// }
+parameter_types! {
+	pub const MaxClassMetadata: u32 = 1024;
+	pub const MaxTokenMetadata: u32 = 1024;
+}
 
-// /// Configure orml nft pallet
-// impl orml_nft::Config for Runtime {
-// 	type ClassId = u32;
-// 	type TokenId = u64;
-// 	type ClassData = ClassData<BlockNumberOf<Self>, ClassIdOf<Self>>;
-// 	type TokenData = TokenData;
-// 	type MaxClassMetadata = MaxClassMetadata;
-// 	type MaxTokenMetadata = MaxTokenMetadata;
-// }
+// Configure orml nft pallet
+impl orml_nft::Config for Runtime {
+	type ClassId = u32;
+	type TokenId = u64;
+	type ClassData = ClassData<BlockNumberOf<Self>, ClassIdOf<Self>>;
+	type TokenData = TokenData;
+	type MaxClassMetadata = MaxClassMetadata;
+	type MaxTokenMetadata = MaxTokenMetadata;
+}
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
@@ -660,6 +660,9 @@ construct_runtime!(
 		// Template
 		TemplatePallet: pallet_template::{Pallet, Call, Storage, Event<T>}  = 40,
 		NFT: pallet_nft::{Pallet,Call,Storage,Event<T>} = 41,
+
+		// ORML
+		OrmlNFT: orml_nft::{Pallet, Storage, Config<T>} = 50,
 	}
 );
 

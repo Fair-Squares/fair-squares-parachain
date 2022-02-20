@@ -81,6 +81,7 @@ xcm = { git = "https://github.com/paritytech/polkadot", default-features = false
 xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.16" }
 xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false , branch = "release-v0.9.16" }
 
+orml-nft = { git = "https://github.com/open-web3-stack/open-runtime-module-library", default-features = false, rev = "ec9a8d8521ca9b7b800dd36726bba7da7a169b9d" }
 
 [features]
 default = [

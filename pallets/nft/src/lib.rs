@@ -45,7 +45,7 @@ use scale_info::{build::Fields, meta_type, Path, Type, TypeInfo, TypeParameter};
 use serde::{Deserialize, Serialize};
 use sp_io::hashing::keccak_256;
 use sp_runtime::{traits::StaticLookup, DispatchResult, RuntimeDebug};
-use sp_std::vec::Vec;
+use sp_std::prelude::*;
 
 #[cfg(test)]
 mod mock;
