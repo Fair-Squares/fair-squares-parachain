@@ -34,11 +34,9 @@
 use enumflags2::BitFlags;
 use frame_support::{
 	pallet_prelude::*,
-	traits::{
-	    Currency, ExistenceRequirement::KeepAlive, Get,
-	},
-		transactional,
-	};
+	traits::{Currency, ExistenceRequirement::KeepAlive, Get},
+	transactional,
+};
 use frame_system::pallet_prelude::*;
 use scale_info::{build::Fields, meta_type, Path, Type, TypeInfo, TypeParameter};
 #[cfg(feature = "std")]

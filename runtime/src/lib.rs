@@ -42,10 +42,10 @@ pub use sp_runtime::{MultiAddress, Perbill, Permill};
 pub use sp_runtime::BuildStorage;
 
 // Polkadot Imports
+use pallet_nft::{BlockNumberOf, ClassData, ClassIdOf, TokenData, CREATION_FEE};
 use pallet_xcm::XcmPassthrough;
 use polkadot_parachain::primitives::Sibling;
 use polkadot_runtime_common::{BlockHashCount, RocksDbWeight, SlowAdjustingFeeUpdate};
-use pallet_nft::{TokenData, BlockNumberOf, ClassIdOf, ClassData, CREATION_FEE};
 
 // XCM Imports
 use xcm::latest::prelude::*;
