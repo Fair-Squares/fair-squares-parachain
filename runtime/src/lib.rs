@@ -56,6 +56,7 @@ use xcm_builder::{
 	UsingComponents,
 };
 use xcm_executor::{Config, XcmExecutor};
+use scale_info::prelude::vec;
 
 /// Import the template pallet.
 pub use pallet_template;
@@ -609,20 +610,20 @@ impl pallet_nft::Config for Runtime {
 	type Pot = Pot;
 }
 
-parameter_types! {
-	pub const MaxClassMetadata: u32 = 1024;
-	pub const MaxTokenMetadata: u32 = 1024;
-}
+// parameter_types! {
+// 	pub const MaxClassMetadata: u32 = 1024;
+// 	pub const MaxTokenMetadata: u32 = 1024;
+// }
 
-/// Configure orml nft pallet
-impl orml_nft::Config for Runtime {
-	type ClassId = u32;
-	type TokenId = u64;
-	type ClassData = ClassData<BlockNumberOf<Self>, ClassIdOf<Self>>;
-	type TokenData = TokenData;
-	type MaxClassMetadata = MaxClassMetadata;
-	type MaxTokenMetadata = MaxTokenMetadata;
-}
+// /// Configure orml nft pallet
+// impl orml_nft::Config for Runtime {
+// 	type ClassId = u32;
+// 	type TokenId = u64;
+// 	type ClassData = ClassData<BlockNumberOf<Self>, ClassIdOf<Self>>;
+// 	type TokenData = TokenData;
+// 	type MaxClassMetadata = MaxClassMetadata;
+// 	type MaxTokenMetadata = MaxTokenMetadata;
+// }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
@@ -658,8 +659,7 @@ construct_runtime!(
 
 		// Template
 		TemplatePallet: pallet_template::{Pallet, Call, Storage, Event<T>}  = 40,
-		NftPallet: pallet_nft::{Pallet,Call,Storage,Event<T>} = 41,
-		OrmlPallet: orml_nft::{Pallet, Call, Storage, Event<T>} = 42,
+		NFT: pallet_nft::{Pallet,Call,Storage,Event<T>} = 41,
 	}
 );
 
