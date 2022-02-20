@@ -60,6 +60,9 @@ use xcm_executor::{Config, XcmExecutor};
 /// Import the template pallet.
 pub use pallet_template;
 
+/// Import the litentry nft pallet.
+pub use pallet_nft;
+
 /// Alias to 512-bit hash when used in the context of a transaction signature on the chain.
 pub type Signature = MultiSignature;
 
@@ -592,6 +595,35 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
+/// Configure nft pallet in pallets/nft
+parameter_types! {
+	pub const ClassCreationFee: u32 = CREATION_FEE;
+	pub const Pot: AccountId32 = AccountId32::new([9u8; 32]);
+}
+
+impl pallet_nft::Config for Runtime {
+	type Currency = Balances;
+	type Event = Event;
+	type WeightInfo = ();
+	type ClassCreationFee = ClassCreationFee;
+	type Pot = Pot;
+}
+
+parameter_types! {
+	pub const MaxClassMetadata: u32 = 1024;
+	pub const MaxTokenMetadata: u32 = 1024;
+}
+
+/// Configure orml nft pallet
+impl orml_nft::Config for Runtime {
+	type ClassId = u32;
+	type TokenId = u64;
+	type ClassData = ClassData<BlockNumberOf<Self>, ClassIdOf<Self>>;
+	type TokenData = TokenData;
+	type MaxClassMetadata = MaxClassMetadata;
+	type MaxTokenMetadata = MaxTokenMetadata;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -626,6 +658,8 @@ construct_runtime!(
 
 		// Template
 		TemplatePallet: pallet_template::{Pallet, Call, Storage, Event<T>}  = 40,
+		NftPallet: pallet_nft::{Pallet,Call,Storage,Event<T>} = 41,
+		OrmlPallet: orml_nft::{Pallet, Call, Storage, Event<T>} = 42,
 	}
 );
 
