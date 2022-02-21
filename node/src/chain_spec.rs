@@ -197,6 +197,7 @@ fn testnet_genesis(
 			candidacy_bond: EXISTENTIAL_DEPOSIT * 16,
 			..Default::default()
 		},
+		orml_nft: parachain_template_runtime::OrmlNFTConfig { tokens: vec![] },
 		session: parachain_template_runtime::SessionConfig {
 			keys: invulnerables
 				.into_iter()

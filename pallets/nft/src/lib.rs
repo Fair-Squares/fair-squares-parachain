@@ -34,18 +34,16 @@
 use enumflags2::BitFlags;
 use frame_support::{
 	pallet_prelude::*,
-	traits::{
-	    Currency, ExistenceRequirement::KeepAlive, Get,
-	},
-		transactional,
-	};
+	traits::{Currency, ExistenceRequirement::KeepAlive, Get},
+	transactional,
+};
 use frame_system::pallet_prelude::*;
 use scale_info::{build::Fields, meta_type, Path, Type, TypeInfo, TypeParameter};
 #[cfg(feature = "std")]
 use serde::{Deserialize, Serialize};
 use sp_io::hashing::keccak_256;
 use sp_runtime::{traits::StaticLookup, DispatchResult, RuntimeDebug};
-use sp_std::vec::Vec;
+use sp_std::prelude::*;
 
 #[cfg(test)]
 mod mock;
